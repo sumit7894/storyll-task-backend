@@ -1,5 +1,6 @@
 const UserService = require('../services/user-service');
-const {StatusCodes} = require('http-status-codes')
+const {StatusCodes} = require('http-status-codes');
+const {transporter} = require('./sendMessage')
 const userService = new UserService();
 
 const addUsers = async (req,res)=>{
@@ -10,6 +11,15 @@ const addUsers = async (req,res)=>{
         mobile: req.body.phone,
         dob: req.body.dob
     });
+    const sendMessage = transporter.sendMail({
+        from: 'smithdashdash@gmail.com', 
+        to: req.body.email, 
+        subject: "You have successfully created a account", 
+        text: "Hey", 
+        html: `<p>Hello <h2> ${req.body.name} </h2></p>
+        <br/> <p>Welcome to storyll </p>
+        `, 
+      });
     return res.status(StatusCodes.OK).json({
         success:true,
         message:"Successfully created the user",
