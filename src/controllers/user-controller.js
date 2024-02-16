@@ -38,6 +38,26 @@ const addUsers = async (req,res)=>{
     })}
 }
 
+const getUsers = async (req,res)=>{
+    try {
+        const response = await userService.get();
+        return res.status(StatusCodes.OK).json({
+            success:true,
+            message:"Successfully created the user",
+            data:response,
+            err:{}
+        })
+    } catch (error) {
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            success:false,
+            message:error.message,
+            data:{},
+            err:error.explanation
+        })
+    }
+}
+
 module.exports ={
-    addUsers
+    addUsers,
+    getUsers
 }

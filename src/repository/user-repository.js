@@ -18,5 +18,15 @@ class UserRepository{
             throw error;
         }
     }
+
+    async get(){
+        try {
+            const users = await User.find();
+            return users;
+        } catch (error) {
+            console.log("Somthing went wrong in the repo layer");
+            throw error;
+        }
+    }
 }
 module.exports = UserRepository;
