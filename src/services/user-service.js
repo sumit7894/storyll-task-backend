@@ -7,7 +7,8 @@ class UserService{
     
     async create(data){
         try {
-            const existingUser = await this.userRepository.get(data.email);
+            const existingUser = await this.userRepository.getUser(data.email);
+            console.log(existingUser);
             if(existingUser){
                 throw new ServiceError('User already exist','Somthing went wrong in user creation');
             }

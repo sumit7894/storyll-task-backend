@@ -9,7 +9,7 @@ class UserRepository{
             throw error;
         }
     }
-    async get(emailId){
+    async getUser(emailId){
         try {
             const user = await User.findOne({email:emailId});
             return user;

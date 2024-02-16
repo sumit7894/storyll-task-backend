@@ -43,7 +43,7 @@ const getUsers = async (req,res)=>{
         const response = await userService.get();
         return res.status(StatusCodes.OK).json({
             success:true,
-            message:"Successfully created the user",
+            message:"Successfully fetched the user",
             data:response,
             err:{}
         })
